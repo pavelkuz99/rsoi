@@ -1,0 +1,49 @@
+  
+.column {
+    float: left;
+    border: 1px solid #ADD8E6;
+}
+
+.left {
+    background-origin: padding-box;
+    background-image: url('background1.jpg');
+    flex: 50%;
+}
+  
+.right {
+    flex: 50%;
+}
+
+.row {
+    border: 1px solid #ADD8E6;
+    display: flex;
+    clear: both;
+}
+
+.split {
+    border-right: 2px solid bisque;
+    padding: 20px;
+}
+
+.first_paragraph {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: whitesmoke;
+}
+
+.second_paragraph {
+    
+}
+
+.third_paragraph {
+    
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
