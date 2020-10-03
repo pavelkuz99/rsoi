@@ -1,9 +1,33 @@
 const defaultColor = "black";
 const defaultFontFamily = "Verdana";
 
+var resultBox = document.getElementById("result-box")
+var inputField = document.getElementById("input-text")
+
+var updateButton = document.getElementById('update-button');
+var beforeButton = document.getElementById('before-radio-button');
+var afterButton = document.getElementById('after-radio-button');
+
+function getPrefixSelector() {
+    var prefixSelectorButton = document.getElementById('prefix-selector');
+    return prefixSelectorButton.value;
+}
+
+updateButton.addEventListener('click', function() {
+    var resultOutput = document.createElement("P");
+    resultOutput.innerText = inputField.value;
+    if (beforeButton.checked) {
+        resultOutput.insertAdjacentText('afterbegin', getPrefixSelector());
+    }
+    if (afterButton.checked) {
+        resultOutput.insertAdjacentText('beforeend', getPrefixSelector());
+    }
+    console.log(resultOutput);
+    resultBox.appendChild(resultOutput)
+});
+
 
 function generateRandomTextStyle() {
-    var inputField = document.getElementById("input-text")
 
     var fontType = [
         "Arial",
@@ -33,7 +57,6 @@ function generateRandomTextStyle() {
 }
 
 function resetDefaultInputSyle() {
-    var inputField = document.getElementById("input-text");
     inputField.style.fontFamily = defaultFontFamily;
     inputField.style.color = defaultColor;
 }

@@ -11,7 +11,7 @@
         <form>
             <label for="input-text" class="input-field">Enter some text:</label><br>
             <input type="text" id="input-text" name="input" onclick="resetDefaultInputSyle()">
-            <select class="select-box">
+            <select id="prefix-selector" class="select-box">
                 <option>prefix#1</option>
                 <option>prefix#2</option>
                 <option>prefix#3</option>
@@ -20,10 +20,10 @@
             <label for="before-radio-button">Before</label><br>
             <input type="radio" id="after-radio-button" name="type" value="after">
             <label for="after-radio-button">After</label><br><br>
-            <input type="button" class="button" value="*style magic*" onclick="generateRandomTextStyle()">
-            <input type="button" class="button" value="Update text">
+            <input type="button" id="text-style-magic-button" class="button" value="*style magic*" onclick="generateRandomTextStyle()">
+            <input type="button" id="update-button" class="button" value="Update text"><br><br>
+            <div class="result-box" id="result-box"></div>
         </form>
-    </div>
 </body>
 
 <script src="script.js"></script>
