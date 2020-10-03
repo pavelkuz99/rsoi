@@ -3,7 +3,11 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #eceffc;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.input-field {
+    width: 100%;
 }
 
 .button {
@@ -38,4 +42,13 @@ body {
 .form-box .button {
     width: 100%;
     margin: 10px 0 0px 0;
+}
+
+.select-box {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 10px 0 0px 0;
+    font-size: 18px;
+    color: #60666d;
 }
