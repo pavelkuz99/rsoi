@@ -62,3 +62,45 @@
   th {
       padding: 10px;
   }
+  
+  .container {
+      height: 550px;
+      width: 900px;
+      position: relative;
+  }
+  
+  .container>.image {
+      position: absolute;
+  }
+  
+  .image1 {
+      bottom: 3rem;
+      left: 2rem;
+      border: 3px solid lightcyan;
+      opacity: 0.7;
+  }
+  
+  .image2 {
+      bottom: 10rem;
+      left: 17rem;
+      border: 2px solid lightblue;
+      opacity: 0.8;
+  }
+  
+  .image3 {
+      bottom: 17rem;
+      left: 27rem;
+      border: 1px solid lightskyblue;
+      opacity: 0.9;
+  }
+  
+  @keyframes slide-right {
+      from {
+          margin-left: 5%;
+          color: white;
+      }
+      to {
+          margin-left: 75%;
+          color: mediumblue;
+      }
+  }
