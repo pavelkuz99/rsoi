@@ -35,3 +35,26 @@ label {
     float: left;
     padding-bottom: 20px;
 }
+
+.button {
+    text-decoration: none;
+    float: left;
+    color: white;
+    font-size: 18px;
+    background: lightsteelblue;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: normal;
+    text-shadow: 0.5px 1px black;
+    transition: all 0.2s ease-in-out;
+}
+
+.select-box {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* margin: 10px 0 20px 0; */
+    font-size: 18px;
+    color: #60666d;
+}
