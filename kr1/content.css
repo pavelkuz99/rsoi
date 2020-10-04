@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+h1 {
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    font-size: 28px;
+}
+
+input,
+label {
+    display: block;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 50px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109), 0 12px 12px rgba(128, 128, 128, 0.35);
+}
+
+.input-box {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: tan;
+    float: left;
+    padding-bottom: 20px;
+}
