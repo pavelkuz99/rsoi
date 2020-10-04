@@ -1,9 +1,12 @@
-const defaultColor = "black";
-const defaultFontFamily = "Verdana";
+var defaultStyle = {
+    "color": "black",
+    "fontFamily": "Verdana",
+}
 
 var resultBox = document.getElementById("result-box")
 var inputField = document.getElementById("input-text")
 
+var styleMagicButton = document.getElementById('style-magic-button');
 var updateButton = document.getElementById('update-button');
 var beforeButton = document.getElementById('before-radio-button');
 var afterButton = document.getElementById('after-radio-button');
@@ -11,6 +14,11 @@ var afterButton = document.getElementById('after-radio-button');
 function getPrefixSelector() {
     var prefixSelectorButton = document.getElementById('prefix-selector');
     return prefixSelectorButton.value;
+}
+
+function updateStyle(input, expectedStyle) {
+    input.style.fontFamily = expectedStyle.fontFamily;
+    input.style.color = expectedStyle.color;
 }
 
 updateButton.addEventListener('click', function() {
@@ -23,20 +31,23 @@ updateButton.addEventListener('click', function() {
         resultOutput.insertAdjacentText('beforeend', getPrefixSelector());
     }
     console.log(resultOutput);
+    updateStyle(resultOutput, inputField.style);
     resultBox.appendChild(resultOutput)
 });
 
+inputField.addEventListener('click', function() {
+    updateStyle(this, defaultStyle)
+});
 
-function generateRandomTextStyle() {
-
-    var fontType = [
+styleMagicButton.addEventListener('click', function() {
+    var fontFamily = [
         "Arial",
         "Helvetica",
         "Roboto",
         "Trebushet MS",
         "Times New Roman"
     ];
-    var fontColor = [
+    var color = [
         "red",
         "bisque",
         "cyan", "orange",
@@ -51,12 +62,9 @@ function generateRandomTextStyle() {
         return styleArray[index];
     }
 
-    inputField.style.color = getRandomStyle(fontColor);
-    inputField.style.fontFamily = getRandomStyle(fontType);
-    inputField.style.width = "100%";
-}
-
-function resetDefaultInputSyle() {
-    inputField.style.fontFamily = defaultFontFamily;
-    inputField.style.color = defaultColor;
-}
+    var randomStyle = {
+        "color": getRandomStyle(color),
+        "fontFamily": getRandomStyle(fontFamily),
+    }
+    updateStyle(inputField, randomStyle);
+});
