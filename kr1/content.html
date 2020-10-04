@@ -30,8 +30,8 @@
             <div class="input-box">
                 <label for="product-name">Product</label>
                 <input id="product-name" type="text" value="" name="product-name" placeholder="name">
-                <input id="color" type="text" value="" name="color" placeholder="color">
-                <input id="price" type="text" value="" name="price" placeholder="price">
+                <input id="product-color" type="text" value="" name="product-color" placeholder="color">
+                <input id="product-price" type="number" value="" name="product-price" placeholder="price">
             </div>
         </section>
         <section>
@@ -39,7 +39,7 @@
                 Select<br>company
             </div>
             <div class="input-box">
-                <select id="show-selector" class="select-box">
+                <select id="show-company-selector" class="select-box">
                     <option>-----None-----</option>
                 </select>
             </div>
@@ -59,7 +59,7 @@
                 <input type="button" id="show-button" class="button" value="Show">
             </div>
             <div style="float: left; margin-right: 10px;">
-                <select id="show-selector" class="select-box">
+                <select id="show-type-selector" class="select-box">
                     <option>as list</option>
                     <option>as text</option>
                 </select>
@@ -67,6 +67,9 @@
             <div style="float: left;">
                 <input type="button" id="show-all-button" class="button" value="Show all">
             </div>
+        </section>
+        <section>
+            <div class="result-box" id="result-box" style="margin-top: 30px;"></div>
         </section>
     </div>
 </body>

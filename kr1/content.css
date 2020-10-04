@@ -29,6 +29,14 @@ label {
     box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109), 0 12px 12px rgba(128, 128, 128, 0.35);
 }
 
+.result-box {
+    display: block;
+    width: 100%;
+    align-items: center;
+    background: rgba(128, 128, 128, 0.109);
+    border-radius: 10px;
+}
+
 .input-box {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: tan;
@@ -54,7 +62,6 @@ label {
     display: block;
     width: 100%;
     height: 100%;
-    /* margin: 10px 0 20px 0; */
     font-size: 18px;
     color: #60666d;
 }
