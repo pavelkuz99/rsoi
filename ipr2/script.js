@@ -30,6 +30,7 @@ updateButton.addEventListener('click', function() {
     if (afterButton.checked) {
         resultOutput.insertAdjacentText('beforeend', getPrefixSelector());
     }
+
     console.log(resultOutput);
     updateStyle(resultOutput, inputField.style);
     resultBox.appendChild(resultOutput)
