@@ -15,6 +15,19 @@ class Company {
         }
     }
 
+    static jsonConstructor(jsonCompanyObject) {
+        var product;
+        var companyInstance = new Company(
+            jsonCompanyObject["companyName"],
+            jsonCompanyObject["country"],
+            jsonCompanyObject["address"],
+        )
+        for (product of jsonCompanyObject["products"]) {
+            companyInstance.addProduct(product);
+        }
+        return companyInstance;
+    }
+
     // method to add id attribute to object
     setCompanyId() {
         this.companyId = hashCode(this.companyName);
@@ -45,7 +58,7 @@ class Company {
         for (product of this.products) {
             productsString = productsString + ` ${product["name"]},`;
         }
-        return `Company "${this.name}" is based in ${this.country}, ${this.address}.<br>` + `Available products:${productsString}`;
+        return `Company "${this.companyName}" is based in ${this.country}, ${this.address}.<br>` + `Available products:${productsString}`;
     }
 
     // get object information as list
@@ -102,8 +115,9 @@ showButton.addEventListener('click', function() {
     resultBox.value = "";
     var selectedCompany = showCompanySelector.options[showCompanySelector.options.selectedIndex];
     if (selectedCompany.id != "") {
-        var companyInstance = JSON.parse(localStorage.getItem(selectedCompany.id));
-        console.log("RESULT", companyInstance);
-        console.log(companyInstance.getInfoText());
+        var companyInstance = Company.jsonConstructor(JSON.parse(localStorage.getItem(selectedCompany.id)));
+        // console.log("RESULT", typeof JSON.parse(localStorage.getItem(selectedCompany.id))["products"]);
+        // console.log("RESULT", companyInstance.products);
+        resultBox.innerHTML = companyInstance.infoText;
     }
 });
