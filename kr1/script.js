@@ -21,6 +21,7 @@ class Company {
             jsonCompanyObject["companyName"],
             jsonCompanyObject["country"],
             jsonCompanyObject["address"],
+            jsonCompanyObject["phone"]
         )
         for (product of jsonCompanyObject["products"]) {
             companyInstance.addProduct(product);
@@ -53,71 +54,139 @@ class Company {
 
     // get object information as text
     get infoText() {
-        var product;
         var productsString = "";
-        for (product of this.products) {
-            productsString = productsString + ` ${product["name"]},`;
+        for (var product of this.products) {
+            productsString = productsString + `${product["name"]} `;
         }
-        return `Company "${this.companyName}" is based in ${this.country}, ${this.address}.<br>` + `Available products:${productsString}`;
+        return `Company "${this.companyName}" is based in ${this.country}, ${this.address}.<br>` + `Available products: ${productsString}`;
     }
 
     // get object information as list
-    // get infoList() {
-
-    // }
+    get infoList() {
+        var productsString = "";
+        var companyDataString = "";
+        for (var companyData of [this.companyName, this.country, this.address, this.phone]){
+            companyDataString = companyDataString + `<li>${companyData}</li>`;
+        }
+        for (var product of this.products) {
+            productsString = productsString + `<li>${product["name"]}, ${product["color"]}, ${product["price"]}</li>`
+        }
+        return `<ul>${companyDataString + productsString}</ul>`;
+    }
 }
 
+
+// company info fields
 var nameField = document.getElementById('name');
 var countryField = document.getElementById('country');
 var addressField = document.getElementById('address');
 var phoneField = document.getElementById('phone');
-var resultBox = document.getElementById('result-box');
 
+// product info fields
 var productName = document.getElementById('product-name');
 var productColor = document.getElementById('product-color');
 var productPrice = document.getElementById('product-price');
 
-var addButton = document.getElementById('add-button');
-var updateButton = document.getElementById('update-button');
-var showButton = document.getElementById('show-button');
+// selector inputs
 var showTypeSelector = document.getElementById('show-type-selector');
 var showCompanySelector = document.getElementById('show-company-selector');
+
+// buttons
+var addButton = document.getElementById('add-button');
+var showButton = document.getElementById('show-button');
+var updateButton = document.getElementById('update-button');
 var shallAllButton = document.getElementById('show-all-button');
 
+var resultBox = document.getElementById('result-box');
+
+function clearInputFields(fieldsList) {
+    for (var field of fieldsList){
+        field.value = '';
+    }
+};
 
 addButton.addEventListener('click', function() {
     const defaultStub = "empty";
-
-    if (typeof(Storage) !== "undefined") {
-        name = nameField.value ? nameField.value : defaultStub;
-        country = countryField.value ? countryField.value : defaultStub;
-        address = addressField.value ? addressField.value : defaultStub;
-        phone = phoneField.value ? phoneField.value : defaultStub;
-        if (productPrice.value && productName.value) {
-            product = Company.createProduct(productName.value, productColor.value, productPrice.value);
+    try {
+        if (typeof(Storage) !== "undefined") {
+            name = nameField.value ? nameField.value : defaultStub;
+            country = countryField.value ? countryField.value : defaultStub;
+            address = addressField.value ? addressField.value : defaultStub;
+            phone = phoneField.value ? phoneField.value : defaultStub;
+            if (productPrice.value && productName.value) {
+                product = Company.createProduct(productName.value, productColor.value, productPrice.value);
+            } else {
+                product = "undefined"
+            }
+            var companyInstance = new Company(name, country, address, phone, product);
+            console.log("New Company object created: ", companyInstance)
+            companyInstance.setCompanyId();
+            localStorage.setItem(companyInstance.companyId, JSON.stringify(companyInstance));
+            var companyOption = document.createElement("option");
+            companyOption.id = companyInstance.companyId;
+            companyOption.innerHTML = companyInstance.companyName;
+            showCompanySelector.appendChild(companyOption)
         } else {
-            product = "undefined"
+            console.log("ERROR: WebStorage not supported");
         }
-        var companyInstance = new Company(name, country, address, phone, product);
-        console.log("Print", companyInstance)
-        companyInstance.setCompanyId();
-        localStorage.setItem(companyInstance.companyId, JSON.stringify(companyInstance));
-        var companyOption = document.createElement("option");
-        companyOption.id = companyInstance.companyId;
-        companyOption.innerHTML = companyInstance.companyName;
-        showCompanySelector.appendChild(companyOption)
-    } else {
-        console.log("ERROR: WebStorage not supported");
-    }
+    } 
+    catch (error) {
+        console.log(error)
+    } 
+    finally {
+        clearInputFields([nameField, countryField, addressField, phoneField, productName, productColor, productPrice])
+    } 
 });
 
 showButton.addEventListener('click', function() {
     resultBox.value = "";
+    const as_text = "as text";
+    const as_list = "as list";
     var selectedCompany = showCompanySelector.options[showCompanySelector.options.selectedIndex];
     if (selectedCompany.id != "") {
         var companyInstance = Company.jsonConstructor(JSON.parse(localStorage.getItem(selectedCompany.id)));
-        // console.log("RESULT", typeof JSON.parse(localStorage.getItem(selectedCompany.id))["products"]);
-        // console.log("RESULT", companyInstance.products);
-        resultBox.innerHTML = companyInstance.infoText;
+        if (showTypeSelector.value == as_text){
+            resultBox.innerHTML = companyInstance.infoText;
+        } else if (showTypeSelector.value == as_list){
+            resultBox.innerHTML = companyInstance.infoList;
+        }
+    }
+});
+
+updateButton.addEventListener('click', function() {
+    var selectedCompany = showCompanySelector.options[showCompanySelector.options.selectedIndex];
+    try{
+        if (selectedCompany.id != "") {
+            var companyInstance = Company.jsonConstructor(JSON.parse(localStorage.getItem(selectedCompany.id)));
+            if (nameField.value != "") {
+                companyInstance.companyName = nameField.value;
+                companyInstance.setCompanyId();
+                localStorage.removeItem(companyInstance.companyId);
+                selectedCompany.id = companyInstance.companyId;
+            }
+            if (countryField.value != "") {
+                companyInstance.country = countryField.value;
+            }
+            if (addressField.value != "") {
+                companyInstance.address = addressField.value;
+            }
+            if (phoneField.value != "") {
+                companyInstance.phone = phoneField.value;
+            }
+            if (productName.value != "" && productColor.value != "" && productPrice.value != ""){
+                companyInstance.addProduct(Company.createProduct(productName.value, productColor.value, productPrice.value))
+            } else {
+                resultBox.innerHTML = "<p>Please enter all product attributes to add it!</p>";
+            }
+            console.log("LOG", companyInstance);
+            companyInstance.setCompanyId();
+            localStorage.setItem(companyInstance.companyId, JSON.stringify(companyInstance));
+        }
+    }
+    catch (error) {
+        console.log(error)
+    } 
+    finally {
+        clearInputFields([nameField, countryField, addressField, phoneField, productName, productColor, productPrice])
     }
 });
