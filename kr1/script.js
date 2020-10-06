@@ -95,7 +95,7 @@ var showCompanySelector = document.getElementById('show-company-selector');
 var addButton = document.getElementById('add-button');
 var showButton = document.getElementById('show-button');
 var updateButton = document.getElementById('update-button');
-var shallAllButton = document.getElementById('show-all-button');
+var showAllButton = document.getElementById('show-all-button');
 
 var resultBox = document.getElementById('result-box');
 
@@ -189,4 +189,26 @@ updateButton.addEventListener('click', function() {
     finally {
         clearInputFields([nameField, countryField, addressField, phoneField, productName, productColor, productPrice])
     }
+});
+
+showAllButton.addEventListener('click', function() {
+    tablesArray = [];
+    var tableHeaderHTML = "<tr><th>Key</th><th>Value</th></tr>";
+    for (var i = 0; i < localStorage.length; i++){
+        var companyInstance = Company.jsonConstructor(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        var tableContent = `
+        <tr><td>Name</td><td>${companyInstance.companyName}</td></tr>
+        <tr><td>Country</td><td>${companyInstance.country}</td></tr>
+        <tr><td>Address</td><td>${companyInstance.address}</td></tr>
+        <tr><td>Phone</td><td>${companyInstance.phone}</td></tr>
+        `;
+        tablesArray.push(`${tableHeaderHTML}${tableContent}`);
+    }
+    var allCompaniesData = "";
+    for (var item of tablesArray) {
+        allCompaniesData = allCompaniesData + `<table border="1" style="table-layout: fixed; width: 25%;">${item}</table>`;
+    }
+    console.log("Results: ", allCompaniesData);
+    var newWindow = window.open("", "",);
+    newWindow.document.write(allCompaniesData);
 });
