@@ -6,7 +6,7 @@ const tableContentMap = {
         "amsterdam.jpg"
     ],
     "Malaga": [
-        "Malaga is a port city on southern Spain’s Costa del Sol, known for its high-rise hotels and resorts jutting up from yellow-sand beaches. Looming over that modern skyline are the city’s 2 massive hilltop citadels, the Alcazaba and ruined Gibralfaro, remnants of Moorish rule. The city's soaring Renaissance cathedral is nicknamed La Manquita ('one-armed lady') because one of its towers was curiously left unbuilt.", 
+        "Malaga is a port city on southern Spain’s Costa del Sol, known for its high-rise hotels and resorts jutting up from yellow-sand beaches. Looming over that modern skyline are the city’s 2 massive hilltop citadels, the Alcazaba and ruined Gibralfaro, remnants of Moorish rule. The city's soaring Renaissance cathedral is nicknamed La Manquita ('one-armed lady') because one of its towers was curiously left unbuilt.",
         "malaga.jpg"
     ],
     "London": [
@@ -46,20 +46,25 @@ var $updatePicturesButton = $(Content.createButton("Update pictures", "update-pi
 var $dataTable = $(Content.createTable(tableHeadersArray, tableContentMap));
 
 $(document).ready(function () {
+    // create content
     $("body").append($updateTextButton, $updatePicturesButton);
     $("body").append($dataTable);
-
-    // var content = "<table>"
-    // for(i=0; i<3; i++){
-    //     content += '<tr><td>' + 'result ' +  i + '</td></tr>';
-    // }
-    // content += "</table>"
-
-    $("#udate-text").click(function () {
-        // $("#").html("Hello, World!");
+    // change cells with text to italic
+    $("#update-text").click(function () {
+        textCells = $("td").filter(function () {
+            return $(this).text();
+        });
+        for (var cell of textCells) {
+            cell.style.fontStyle = "italic";
+            if (cell.textContent.includes("London")) {
+                cell.style.textDecoration = "underline";
+            }
+        };
     });;
-
-    $("#udate-pictures").click(function () {
-        // $("#").html("Hello, World!");
+    // change pictures width
+    $("#update-pictures").click(function () {
+        for (var image of $("img")) {
+            image.src = "stub.jpg";
+        }
     });;
 });
