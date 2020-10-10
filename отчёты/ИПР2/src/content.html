@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="content.css">
+    <title>ИПР #2</title>
+</head>
+
+<body>
+    <div class="form-box">
+        <form>
+            <label for="input-text" class="input-field">
+                Enter some text:
+            </label><br>
+            <input type="text" id="input-text" name="input">
+            <select id="prefix-selector" class="select-box">
+                <option>prefix#1</option>
+                <option>prefix#2</option>
+                <option>prefix#3</option>
+            </select><br>
+            <input type="radio" id="before-radio-button" name="type" value="before">
+            <label for="before-radio-button">
+                before
+            </label><br>
+            <input type="radio" id="after-radio-button" name="type" value="after">
+            <label for="after-radio-button">
+                after
+            </label><br>
+            <input type="button" id="style-magic-button" class="button" value="*style magic*">
+            <input type="button" id="update-button" class="button" value="Update text"><br><br>
+            <div class="result-box" id="result-box"></div>
+        </form>
+    </div>
+</body>
+
+<script src="script.js"></script>
+
+</html>
