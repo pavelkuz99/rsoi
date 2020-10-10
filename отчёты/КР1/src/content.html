@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="content.css">
+    <title>JS objects</title>
+</head>
+
+<body>
+    <div class="box">
+        <h1>company info</h1>
+        <section>
+            <div class="input-box" style="margin-right: 20px;">
+                <label for="name">Name</label>
+                <input id="name" type="text" value="" name="name" placeholder="enter..." onclick="this.value=''">
+            </div>
+            <div class="input-box">
+                <label for="country">Country</label>
+                <input id="country" type="text" value="" name="country" placeholder="enter..." onclick="this.value=''">
+            </div>
+            <br style="clear:both;" />
+        </section>
+        <section>
+            <div class="input-box" style="margin-right: 20px;">
+                <label for="address">Address</label>
+                <input id="address" type="text" value="" name="address" placeholder="enter..." onclick="this.value=''">
+                <label for="phone" style="padding-top: 8px;">Phone</label>
+                <input id="phone" type="text" value="" name="phone" placeholder="enter..." onclick="this.value=''">
+            </div>
+            <div class="input-box">
+                <label for="product-name">Product</label>
+                <input id="product-name" type="text" value="" name="product-name" placeholder="name"  onclick="this.value=''">
+                <input id="product-color" type="text" value="" name="product-color" placeholder="color"  onclick="this.value=''">
+                <input id="product-price" type="number" value="" name="product-price" placeholder="price"  onclick="this.value=''">
+            </div>
+        </section>
+        <section>
+            <div class="input-box" style="margin-right: 15px;">
+                Select<br>company
+            </div>
+            <div class="input-box">
+                <select id="show-company-selector" class="select-box">
+                    <option>-----None-----</option>
+                </select>
+            </div>
+        </section>
+        <section>
+            <div style="float: left; margin-bottom: 20px;">
+            </div>
+        </section>
+        <section>
+            <div style="float: left; margin-right: 10px;">
+                <input type="button" id="add-button" class="button" value="Add">
+            </div>
+            <div style="float: left; margin-right: 10px;">
+                <input type="button" id="update-button" class="button" value="Update">
+            </div>
+            <div style="float: left; margin-right: 5px;">
+                <input type="button" id="show-button" class="button" value="Show">
+            </div>
+            <div style="float: left; margin-right: 10px;">
+                <select id="show-type-selector" class="select-box">
+                    <option>as list</option>
+                    <option>as text</option>
+                </select>
+            </div>
+            <div style="float: left;">
+                <input type="button" id="show-all-button" class="button" value="Show all">
+            </div>
+        </section>
+        <section>
+            <div class="result-box" id="result-box" style="margin-top: 30px;"></div>
+        </section>
+    </div>
+</body>
+
+<script src="script.js"></script>
+
+</html>
