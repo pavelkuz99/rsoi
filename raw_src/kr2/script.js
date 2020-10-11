@@ -23,12 +23,12 @@ class Content {
     static createTable(tableHeadersArray, tableContentMap) {
         var headers = "<thead><tr>";
         var rows = "<tbody>";
-        // create headers
+        // создать заголовки таблицы
         for (var header of tableHeadersArray) {
             headers += `<th>${header}</th>`;
         }
         headers += "</tr></thead>";
-        // create table data rows
+        // создать наполнение таблицы
         for (var key in tableContentMap) {
             var data_header = `<h2>${key}</h2>`;
             var data = tableContentMap[key];
@@ -46,10 +46,10 @@ var $updatePicturesButton = $(Content.createButton("Update pictures", "update-pi
 var $dataTable = $(Content.createTable(tableHeadersArray, tableContentMap));
 
 $(document).ready(function () {
-    // create content
+    // создать элементы страницы
     $("body").append($updateTextButton, $updatePicturesButton);
     $("body").append($dataTable);
-    // change cells with text to italic
+    // сделать текст курсивом
     $("#update-text").click(function () {
         textCells = $("td").filter(function () {
             return $(this).text();
@@ -61,10 +61,10 @@ $(document).ready(function () {
             }
         };
     });;
-    // change pictures width
+    // изменить изображения
     $("#update-pictures").click(function () {
-        for (var image of $("img")) {
-            image.src = "stub.jpg";
-        }
+        $("img").fadeOut('fast');
+        $("img").fadeIn('slow');
+        $("img").attr("src", "stub.jpg");
     });;
 });
